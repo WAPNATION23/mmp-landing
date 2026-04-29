@@ -23,7 +23,7 @@
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'], // For the MMP logo
+                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
@@ -35,7 +35,40 @@
             color: #ffffff;
         }
 
-        /* Clean, professional styling. No more cheap glows. */
+        /* --- PRELOADER STYLES --- */
+        #preloader {
+            background-color: #050505;
+        }
+        
+        .wall-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+            opacity: 0.6;
+        }
+        
+        .graffiti-logo {
+            transform: rotate(-3deg) scale(1.2);
+            filter: drop-shadow(0 0 15px rgba(57, 255, 20, 0.6));
+            border-style: dashed solid solid dashed;
+            border-width: 4px;
+            border-color: #39ff14;
+            mix-blend-mode: screen;
+            opacity: 0.9;
+            /* Give it a spray paint feel */
+            box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.4);
+        }
+        
+        @keyframes loadingBar {
+            0% { transform: scaleX(0); transform-origin: left; }
+            49% { transform: scaleX(1); transform-origin: left; }
+            51% { transform: scaleX(1); transform-origin: right; }
+            100% { transform: scaleX(0); transform-origin: right; }
+        }
+        
+        .animate-loading {
+            animation: loadingBar 2s ease-in-out infinite;
+        }
+
+        /* --- MAIN STYLES --- */
         .glass-nav {
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(16px);
@@ -76,14 +109,12 @@
             border-color: #39ff14;
         }
 
-        /* Hero Background with overlay */
         .hero-bg {
-            background-image: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 100%), url('https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=2000&auto=format&fit=crop');
+            background-image: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 100%), url('https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=2000');
             background-size: cover;
             background-position: center;
         }
 
-        /* Logo styling based on the actual logo */
         .logo-oval {
             border: 3px solid #39ff14;
             border-radius: 100%;
@@ -94,7 +125,6 @@
             justify-content: center;
         }
 
-        /* Subtle grid background for sections */
         .bg-grid {
             background-image: 
                 linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -102,7 +132,6 @@
             background-size: 50px 50px;
         }
 
-        /* Animations */
         .fade-in {
             animation: fadeIn 0.8s ease forwards;
             opacity: 0;
@@ -121,7 +150,36 @@
         .delay-300 { animation-delay: 0.3s; }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-green selection:text-black flex flex-col min-h-screen">
+<body class="antialiased selection:bg-brand-green selection:text-black flex flex-col min-h-screen overflow-hidden">
+
+    <!-- PRELOADER (Graffiti on Wall) -->
+    <div id="preloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
+        <!-- Brick/Concrete wall background -->
+        <div class="absolute inset-0 wall-texture"></div>
+        <!-- Dark gradient overlay to make graffiti pop -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
+        
+        <div class="relative z-10 flex flex-col items-center">
+            <!-- The Graffiti Logo -->
+            <div class="logo-oval graffiti-logo animate-pulse">
+                <span class="font-serif font-bold text-5xl md:text-7xl tracking-widest leading-none text-brand-green" style="text-shadow: 3px 3px 6px rgba(0,0,0,0.9);">MMP</span>
+                <div class="flex items-center gap-4 my-2 md:my-3">
+                    <i class="ph-fill ph-jeep text-brand-green text-3xl drop-shadow-lg"></i>
+                    <i class="ph-fill ph-handshake text-brand-green text-3xl drop-shadow-lg"></i>
+                </div>
+                <span class="text-sm md:text-lg uppercase tracking-[0.2em] font-bold text-brand-green" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.9);">Motor Market Place</span>
+            </div>
+            
+            <div class="mt-12 text-brand-green font-bold tracking-[0.3em] text-xs uppercase animate-pulse">
+                INICIANDO SISTEMA...
+            </div>
+            
+            <!-- Loading Bar -->
+            <div class="w-64 h-1 bg-gray-900 mt-4 rounded-full overflow-hidden border border-gray-800">
+                <div class="w-full h-full bg-brand-green animate-loading"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Top Bar -->
     <div class="bg-[#111] border-b border-[#222] py-2 px-6 text-xs text-gray-400 flex justify-between items-center z-50 relative">
@@ -306,10 +364,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Vehicle 1: Mustang (Real Photo) -->
+                <!-- Vehicle 1: Mustang (Robust URL) -->
                 <div class="card overflow-hidden group flex flex-col">
                     <div class="relative h-60 overflow-hidden bg-[#111]">
-                        <img src="https://images.unsplash.com/photo-1584345604476-8ec5e12e42a5?q=80&w=800&auto=format&fit=crop" alt="Ford Mustang Blanco" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
+                        <img src="https://images.pexels.com/photos/3311588/pexels-photo-3311588.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ford Mustang Blanco" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
                         <div class="absolute top-4 left-4 bg-brand-green text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm">
                             Venta
                         </div>
@@ -331,10 +389,10 @@
                     </div>
                 </div>
 
-                <!-- Vehicle 2: SUV/Camioneta -->
+                <!-- Vehicle 2: SUV/Camioneta (Robust URL) -->
                 <div class="card overflow-hidden group flex flex-col">
                     <div class="relative h-60 overflow-hidden bg-[#111]">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop" alt="SUV" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
+                        <img src="https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&w=800" alt="SUV" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
                         <div class="absolute top-4 left-4 bg-white text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm">
                             Renta / Venta
                         </div>
@@ -356,10 +414,10 @@
                     </div>
                 </div>
 
-                <!-- Vehicle 3: Moto/Quad -->
+                <!-- Vehicle 3: Moto/Quad (Robust URL) -->
                 <div class="card overflow-hidden group flex flex-col">
                     <div class="relative h-60 overflow-hidden bg-[#111]">
-                        <img src="https://images.unsplash.com/photo-1596328546171-77e37b5f8eae?q=80&w=800&auto=format&fit=crop" alt="ATV Quad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
+                        <img src="https://images.pexels.com/photos/2607554/pexels-photo-2607554.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Motorcycle ATV" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100">
                         <div class="absolute top-4 left-4 bg-brand-green text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm">
                             Venta
                         </div>
@@ -461,6 +519,21 @@
     </a>
 
     <script>
+        // PRELOADER LOGIC
+        window.addEventListener('load', () => {
+            // Keep the preloader visible for at least 2 seconds so the user can admire the graffiti
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.classList.add('opacity-0');
+                // Remove overflow hidden from body to allow scrolling
+                document.body.classList.remove('overflow-hidden');
+                
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 1000);
+            }, 2000);
+        });
+
         // Navbar Scrolled State
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
