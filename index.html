@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMP Motor Market Place | Soluciones Mineras y Automotrices</title>
+    <meta name="description" content="Especialistas en minería, logística, rescate 24/7 y venta de vehículos premium.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0f18',
+                        darker: '#05080c',
+                        card: '#131b2b',
+                        neon: '#39ff14',
+                        neonHover: '#32e012',
+                        accent: '#1f2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(57, 255, 20, 0.4)',
+                        'neon-strong': '0 0 30px rgba(57, 255, 20, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #05080c;
+            color: #f3f4f6;
+        }
+        
+        .glass {
+            background: rgba(19, 27, 43, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+
+        .btn-primary {
+            background: #39ff14;
+            color: #05080c;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid #39ff14;
+            color: #39ff14;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #39ff14;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-outline:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .btn-outline:hover {
+            color: #05080c;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+        }
+        
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 255, 20, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(57, 255, 20, 0.15);
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(5, 8, 12, 0.3), rgba(5, 8, 12, 1)), url('assets/mmp_hero_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Subtle grid background pattern */
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-neon selection:text-darker flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 glass border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-sm bg-neon flex items-center justify-center shadow-neon group-hover:shadow-neon-strong transition-all">
+                    <span class="font-display font-bold text-darker text-xl tracking-tighter">MMP</span>
+                </div>
+                <span class="font-display font-bold text-xl tracking-wide hidden sm:block">
+                    MOTOR <span class="text-neon">MARKET</span>
+                </span>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#servicios" class="hover:text-neon transition-colors">Servicios</a>
+                <a href="#inventario" class="hover:text-neon transition-colors">Inventario</a>
+                <a href="#contacto" class="hover:text-neon transition-colors">Contacto</a>
+            </nav>
+
+            <a href="#contacto" class="btn-primary font-semibold px-6 py-2.5 rounded-sm text-sm uppercase tracking-wide flex items-center gap-2">
+                <i class="ph ph-envelope-simple text-lg"></i>
+                Contacto
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center hero-bg pt-20">
+        <!-- Glowing orb behind text -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon/30 bg-neon/5 text-neon text-sm font-medium mb-8 fade-in-up">
+                <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+                División Corporativa & Premium
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight mb-6 fade-in-up delay-100">
+                Soluciones que impulsan <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">tus proyectos</span>
+                <span class="text-neon">.</span>
+            </h1>
+            
+            <p class="text-lg md:text-2xl text-gray-400 font-light max-w-3xl mx-auto mb-10 fade-in-up delay-200">
+                Especialistas en minería, logística, rescate 24/7 y venta de vehículos premium. Potencia operativa garantizada.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up delay-300">
+                <a href="#cotizar" class="btn-primary w-full sm:w-auto px-8 py-4 rounded-sm font-bold text-lg uppercase tracking-wide flex items-center justify-center gap-2">
+                    <i class="ph ph-rocket-launch text-xl"></i>
+                    Cotizar Flota/Servicio
+                </a>
+                <a href="#sos" class="btn-outline w-full sm:w-auto px-8 py-4 rounded-sm font-bold text-lg uppercase tracking-wide flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-warning-circle text-xl text-red-500"></i>
+                    SOS Rescate 24/7
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 float-anim">
+            <span class="text-xs uppercase tracking-widest font-medium">Explorar</span>
+            <i class="ph ph-arrow-down text-xl"></i>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="servicios" class="py-24 bg-darker relative border-t border-white/5 bg-grid">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 md:flex justify-between items-end">
+                <div class="max-w-2xl">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Capacidad Operativa</h2>
+                    <p class="text-gray-400 text-lg">Cobertura integral para las exigencias de la gran industria y el mercado premium.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="glass p-8 rounded-sm border border-white/5 card-hover group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon/5 rounded-bl-full -z-10 group-hover:bg-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-accent rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-hard-hat text-3xl text-neon"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Servicios a la minería</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Infraestructura, logística de apoyo y equipamiento especializado bajo los más altos estándares de seguridad.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass p-8 rounded-sm border border-white/5 card-hover group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-bl-full -z-10 group-hover:bg-red-500/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-accent rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-ambulance text-3xl text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Rescate y traslado 24/7</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Respuesta inmediata para remolque, asistencia en ruta y rescate de maquinaria pesada o vehículos particulares.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass p-8 rounded-sm border border-white/5 card-hover group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon/5 rounded-bl-full -z-10 group-hover:bg-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-accent rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-jeep text-3xl text-neon"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Renta de vehículos y Fletes</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Flota operativa para transporte de carga, arriendo de camionetas equipadas y logística de distribución.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass p-8 rounded-sm border border-white/5 card-hover group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon/5 rounded-bl-full -z-10 group-hover:bg-neon/10 transition-colors"></div>
+                    <div class="w-14 h-14 bg-accent rounded-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-handshake text-3xl text-neon"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3">Compra, venta e intercambio</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Gestión comercial de vehículos premium y maquinaria. Tasación justa y procesos transparentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Teaser -->
+    <section id="inventario" class="py-24 bg-dark relative border-t border-white/5 overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-neon/5 rounded-full blur-[150px] pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                        <span class="text-neon font-medium text-sm tracking-widest uppercase">Stock Activo</span>
+                    </div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold">Inventario en <span class="text-white">Tiempo Real</span></h2>
+                </div>
+                <a href="#" class="mt-6 md:mt-0 text-white hover:text-neon flex items-center gap-2 transition-colors font-medium">
+                    Ver catálogo completo <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Vehicle 1: Mustang -->
+                <div class="group bg-card rounded-sm border border-white/5 overflow-hidden card-hover flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent z-10"></div>
+                        <img src="assets/mmp_mustang.png" alt="Ford Mustang Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20 bg-darker/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-sm border border-white/10 uppercase tracking-wider text-gray-300">
+                            Premium
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-20 -mt-10">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-2xl font-bold">Ford Mustang GT</h3>
+                            <span class="text-neon font-bold text-xl">$45.9M</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow">V8 5.0L, Transmisión Automática 10 vel, Asientos de cuero, Paquete Performance. Entrega inmediata.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4 mb-6 text-sm text-gray-400">
+                            <div class="flex items-center gap-1"><i class="ph ph-engine text-neon"></i> 5.0L</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-calendar-blank text-neon"></i> 2023</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-gauge text-neon"></i> 12k km</div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-white/5 hover:bg-neon hover:text-darker border border-white/10 hover:border-neon rounded-sm transition-all font-semibold flex justify-center items-center gap-2 group/btn">
+                            Ver detalles
+                            <i class="ph-bold ph-arrow-up-right group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vehicle 2: KTM -->
+                <div class="group bg-card rounded-sm border border-white/5 overflow-hidden card-hover flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent z-10"></div>
+                        <img src="assets/mmp_ktm.png" alt="KTM Dirt Bike" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20 bg-darker/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-sm border border-white/10 uppercase tracking-wider text-gray-300">
+                            Powersports
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-20 -mt-10">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-2xl font-bold">KTM 450 EXC-F</h3>
+                            <span class="text-neon font-bold text-xl">$11.2M</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow">La campeona del enduro. Ligera, potente y equipada con suspensión WP XPLOR. Ideal para competición o recreación extrema.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4 mb-6 text-sm text-gray-400">
+                            <div class="flex items-center gap-1"><i class="ph ph-engine text-neon"></i> 450cc</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-calendar-blank text-neon"></i> 2024</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-gauge text-neon"></i> 0 km</div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-white/5 hover:bg-neon hover:text-darker border border-white/10 hover:border-neon rounded-sm transition-all font-semibold flex justify-center items-center gap-2 group/btn">
+                            Ver detalles
+                            <i class="ph-bold ph-arrow-up-right group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vehicle 3: Mining Truck -->
+                <div class="group bg-card rounded-sm border border-white/5 overflow-hidden card-hover flex flex-col">
+                    <div class="relative h-64 overflow-hidden bg-black flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent z-10"></div>
+                        <img src="assets/mmp_mining_truck.png" alt="Camión Minero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20 bg-darker/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-sm border border-white/10 uppercase tracking-wider text-gray-300">
+                            Industrial
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow relative z-20 -mt-10">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-display text-2xl font-bold">CAT 793F <span class="text-sm font-normal text-gray-400 ml-2">(Renta)</span></h3>
+                            <span class="text-neon font-bold text-xl">Cotizar</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow">Equipo minero de alto tonelaje para faenas exigentes. Mantenimiento preventivo al día, certificación vigente para operar en gran minería.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4 mb-6 text-sm text-gray-400">
+                            <div class="flex items-center gap-1"><i class="ph ph-weight text-neon"></i> 250t</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-certificate text-neon"></i> Cert.</div>
+                            <div class="flex items-center gap-1"><i class="ph ph-clock text-neon"></i> Disp. 48h</div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-white/5 hover:bg-neon hover:text-darker border border-white/10 hover:border-neon rounded-sm transition-all font-semibold flex justify-center items-center gap-2 group/btn">
+                            Ver detalles
+                            <i class="ph-bold ph-arrow-up-right group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section id="contacto" class="py-20 relative border-y border-neon/20 overflow-hidden bg-darker">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiMzOWZmMTQiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-32 bg-neon/10 blur-[80px]"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">¿Necesitas equipamiento o un rescate urgente?</h2>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Nuestro equipo de operaciones está listo para responder. Desde la venta de un deportivo hasta la logística de una faena minera.</p>
+            
+            <a href="mailto:contacto@mmp.cl" class="inline-flex items-center gap-3 text-2xl md:text-4xl font-display font-bold text-white hover:text-neon transition-colors neon-text">
+                contacto@mmp.cl
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darker pt-16 pb-8 border-t border-white/5 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center gap-2 justify-center md:justify-start mb-4">
+                        <div class="w-8 h-8 rounded-sm bg-neon flex items-center justify-center">
+                            <span class="font-display font-bold text-darker text-sm">MMP</span>
+                        </div>
+                        <span class="font-display font-bold text-lg">MOTOR MARKET</span>
+                    </div>
+                    <p class="text-gray-500 text-sm max-w-xs mx-auto md:mx-0">Especialistas en minería, logística, rescate 24/7 y venta de vehículos premium.</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="#" class="w-10 h-10 rounded-sm bg-card border border-white/5 flex items-center justify-center text-gray-400 hover:text-neon hover:border-neon transition-all">
+                        <i class="ph-fill ph-instagram-logo text-xl"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-sm bg-card border border-white/5 flex items-center justify-center text-gray-400 hover:text-neon hover:border-neon transition-all">
+                        <i class="ph-fill ph-linkedin-logo text-xl"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-sm bg-card border border-white/5 flex items-center justify-center text-gray-400 hover:text-neon hover:border-neon transition-all">
+                        <i class="ph-fill ph-facebook-logo text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-medium">
+                <p>&copy; 2026 MMP Motor Market Place. Todos los derechos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-gray-300 transition-colors">Términos y Condiciones</a>
+                    <a href="#" class="hover:text-gray-300 transition-colors">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/56912345678" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-[0_0_20px_rgba(37,211,102,0.6)] transition-all group">
+        <i class="ph-fill ph-whatsapp-logo text-4xl group-hover:animate-bounce"></i>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-ping"></span>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-darker"></span>
+    </a>
+
+    <script>
+        // Simple Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-darker/90', 'shadow-lg');
+                navbar.classList.remove('glass');
+            } else {
+                navbar.classList.add('glass');
+                navbar.classList.remove('bg-darker/90', 'shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
